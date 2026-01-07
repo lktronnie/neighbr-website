@@ -413,6 +413,10 @@
             margin: 0 auto;
         }
 
+        .implementation .section-description {
+            color: #4a5568;
+        }
+
         /* Value Proposition Section */
         .value-props {
             background: #292a2d;
@@ -632,21 +636,23 @@
             background: #202124;
             border-radius: 16px;
             margin-bottom: 24px;
-            height: 650px;
+            height: 700px;
             display: flex;
             align-items: center;
             justify-content: center;
             border: 2px solid #3c4043;
             overflow: hidden;
             position: relative;
-            width: 100%;
+            max-width: 420px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .mockup-screen iframe {
-            width: 100%;
-            height: 100%;
+            width: 375px;
+            height: 812px;
             border: none;
-            transform: scale(1);
+            transform: scale(0.85);
             transform-origin: center center;
         }
 
@@ -1055,7 +1061,11 @@
             }
 
             .mockup-screen {
-                height: 500px;
+                height: 550px;
+            }
+
+            .mockup-screen iframe {
+                transform: scale(0.65);
             }
 
             .value-grid {
@@ -1142,7 +1152,11 @@
             }
 
             .mockup-screen {
-                height: 400px;
+                height: 450px;
+            }
+
+            .mockup-screen iframe {
+                transform: scale(0.55);
             }
 
             .product-features {
@@ -1267,7 +1281,12 @@
             }
 
             .mockup-screen {
-                height: 350px;
+                height: 400px;
+                max-width: 320px;
+            }
+
+            .mockup-screen iframe {
+                transform: scale(0.48);
             }
 
             .mockup-card {
@@ -1336,7 +1355,12 @@
             }
 
             .mockup-screen {
-                height: 300px;
+                height: 350px;
+                max-width: 280px;
+            }
+
+            .mockup-screen iframe {
+                transform: scale(0.42);
             }
 
             .value-metric {
@@ -1396,9 +1420,9 @@
     <!-- Hero Section -->
     <div class="hero">
         <div class="hero-content">
-            <div class="hero-badge">FOR PROPERTY MANAGEMENT COMPANIES</div>
-            <h1><span class="highlight">Reduce Costs by 40%.</span><br>Increase Tenant Satisfaction by <span class="highlight">60%</span>.</h1>
-            <p class="hero-subtitle">The all-in-one digital platform that helps Hong Kong PMCs automate operations, reduce staff workload, and deliver exceptional tenant experiences.</p>
+            <div class="hero-badge">FOR PROPERTY MANAGERS</div>
+            <h1>Property Management.<br><span class="highlight">Reimagined.</span></h1>
+            <p class="hero-subtitle">The all-in-one digital platform that helps Hong Kong property managers automate operations, reduce staff workload, and deliver exceptional tenant experiences.</p>
             <div class="hero-cta">
                 <a href="#demo" class="btn-primary">Request a Demo</a>
                 <a href="#product" class="btn-secondary">See the Platform</a>
@@ -1410,9 +1434,9 @@
     <div class="section value-props">
         <div class="container">
             <div class="section-header">
-                <div class="section-subtitle">Why PMCs Choose Neighbr</div>
+                <div class="section-subtitle">Why Property Managers Choose Neighbr</div>
                 <h2 class="section-title">Measurable Impact on Your Bottom Line</h2>
-                <p class="section-description">Join forward-thinking property management companies reducing costs while improving tenant retention and satisfaction.</p>
+                <p class="section-description">Join forward-thinking property managers reducing costs while improving tenant retention and satisfaction.</p>
             </div>
             <div class="value-grid">
                 <div class="value-card">
@@ -1433,12 +1457,6 @@
                     <h3>Data Visibility</h3>
                     <p>Real-time analytics on maintenance trends, facility usage, and tenant engagement help you make data-driven decisions.</p>
                 </div>
-                <div class="value-card">
-                    <div class="value-icon">👥</div>
-                    <div class="value-metric">25%</div>
-                    <h3>Higher Tenant Retention</h3>
-                    <p>Happy tenants stay longer. Our platform improves communication and service delivery, reducing costly turnover.</p>
-                </div>
             </div>
         </div>
     </div>
@@ -1447,7 +1465,7 @@
     <div class="section pmc-challenges">
         <div class="container">
             <div class="section-header">
-                <div class="section-subtitle">The PMC Reality</div>
+                <div class="section-subtitle">The Reality</div>
                 <h2 class="section-title">Stop Struggling. Start Scaling.</h2>
             </div>
             <div class="challenge-grid">
@@ -1465,14 +1483,6 @@
                         <h4>Tenant Complaints & Churn</h4>
                         <p>Slow response times, poor communication, and missed maintenance requests damage your reputation and increase vacancy rates.</p>
                     </div>
-                    <div class="challenge-item">
-                        <h4>No Operational Visibility</h4>
-                        <p>You lack data on maintenance trends, facility utilization, and tenant satisfaction. Making strategic decisions is guesswork.</p>
-                    </div>
-                    <div class="challenge-item">
-                        <h4>Difficult to Scale</h4>
-                        <p>Adding new buildings means hiring more staff. Your current manual processes don't scale.</p>
-                    </div>
                 </div>
 
                 <div class="challenge-column solutions">
@@ -1488,14 +1498,6 @@
                     <div class="challenge-item">
                         <h4>Improve Tenant Satisfaction by 60%</h4>
                         <p>24/7 self-service, real-time tracking, and instant communication make tenants happier and more likely to renew.</p>
-                    </div>
-                    <div class="challenge-item">
-                        <h4>Comprehensive Analytics Dashboard</h4>
-                        <p>Track every metric that matters: response times, facility usage, maintenance costs, and tenant engagement—all in real-time.</p>
-                    </div>
-                    <div class="challenge-item">
-                        <h4>Scale Without Hiring</h4>
-                        <p>Manage 10 buildings or 100 with the same platform. Our pricing scales with you, not your headcount.</p>
                     </div>
                 </div>
             </div>
@@ -1515,37 +1517,37 @@
                     <div class="feature-icon">🔧</div>
                     <h3>Smart Maintenance Management</h3>
                     <p>Tenants submit issues with photos. You track progress, assign vendors, and monitor resolution times. Auto-notifications keep everyone informed.</p>
-                    <div class="feature-benefit">PMC Benefit: 50% faster resolution times, better vendor accountability</div>
+                    <div class="feature-benefit">Benefit: 50% faster resolution times, better vendor accountability</div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📅</div>
                     <h3>Automated Facility Booking</h3>
                     <p>24/7 self-service booking with real-time availability. Auto-confirmations, reminders, and cancellation management. No more phone tag.</p>
-                    <div class="feature-benefit">PMC Benefit: Eliminate booking conflicts, reduce front desk hours by 70%</div>
+                    <div class="feature-benefit">Benefit: Eliminate booking conflicts, reduce front desk hours by 70%</div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📢</div>
                     <h3>Instant Announcements</h3>
                     <p>Broadcast critical updates to all tenants instantly. Push notifications ensure 95%+ read rates within hours. No more paper notices.</p>
-                    <div class="feature-benefit">PMC Benefit: Save HK$500+/month on printing, 100% delivery confirmation</div>
+                    <div class="feature-benefit">Benefit: Save HK$500+/month on printing, 100% delivery confirmation</div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">💬</div>
                     <h3>Centralized Communication</h3>
                     <p>All tenant messages in one organized inbox. Message history, attachment support, and auto-routing to the right department.</p>
-                    <div class="feature-benefit">PMC Benefit: End WhatsApp chaos, improve response time tracking</div>
+                    <div class="feature-benefit">Benefit: End WhatsApp chaos, improve response time tracking</div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📊</div>
                     <h3>Management Dashboard</h3>
                     <p>Real-time analytics on maintenance costs, facility utilization, response times, and tenant satisfaction. Export reports for building owners.</p>
-                    <div class="feature-benefit">PMC Benefit: Data-driven decisions, impress building owners with metrics</div>
+                    <div class="feature-benefit">Benefit: Data-driven decisions, impress building owners with metrics</div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">👥</div>
                     <h3>Community Features</h3>
                     <p>Building bulletin board, polls, and neighbor connections create vibrant communities. Happy tenants renew leases.</p>
-                    <div class="feature-benefit">PMC Benefit: 25% higher tenant retention, reduced vacancy costs</div>
+                    <div class="feature-benefit">Benefit: Higher tenant retention, reduced vacancy costs</div>
                 </div>
             </div>
         </div>
@@ -1655,7 +1657,7 @@
                 <div class="trust-card">
                     <div class="trust-icon">📞</div>
                     <h3>Local Support</h3>
-                    <p>Hong Kong-based support team available in Cantonese, English, and Mandarin. We understand local PMC needs.</p>
+                    <p>Hong Kong-based support team available in Cantonese, English, and Mandarin. We understand local property management needs.</p>
                 </div>
                 <div class="trust-card">
                     <div class="trust-icon">🔄</div>
@@ -1665,7 +1667,7 @@
                 <div class="trust-card">
                     <div class="trust-icon">📈</div>
                     <h3>Proven Track Record</h3>
-                    <p>Trusted by leading PMCs managing over 10,000 units across Hong Kong. See measurable results within months.</p>
+                    <p>Trusted by leading property managers managing over 10,000 units across Hong Kong. See measurable results within months.</p>
                 </div>
             </div>
         </div>
@@ -1675,7 +1677,7 @@
     <div class="cta-section" id="demo">
         <div class="container">
             <h2>Ready to Transform Your Property Management?</h2>
-            <p>Join forward-thinking PMCs reducing costs and delighting tenants. Book a personalized demo today.</p>
+            <p>Join forward-thinking property managers reducing costs and delighting tenants. Book a personalized demo today.</p>
             <div class="cta-form">
                 <input type="email" class="cta-input" placeholder="Your work email">
                 <a href="mailto:partners@neighbr.hk?subject=Demo Request&body=Please schedule a demo for our property management company." class="btn-primary">Request Demo</a>
@@ -1691,7 +1693,7 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h4>Neighbr</h4>
-                <p>The modern property management platform built specifically for Hong Kong PMCs.</p>
+                <p>The modern property management platform built specifically for Hong Kong.</p>
                 <p style="margin-top: 20px;">Building better communities, one building at a time.</p>
             </div>
             <div class="footer-section">
