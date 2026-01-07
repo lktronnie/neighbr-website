@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#8BC48A">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description" content="Reduce costs by 40% and increase tenant satisfaction with Neighbr - the all-in-one property management platform for Hong Kong PMCs">
+    <link rel="manifest" href="/manifest.json">
     <title>Neighbr - Property Management Platform for Hong Kong PMCs</title>
     <style>
         * {
@@ -75,6 +80,10 @@
             font-size: 15px;
             font-weight: 500;
             transition: color 0.2s;
+            padding: 8px 12px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
         }
 
         .nav-link:hover {
@@ -84,17 +93,102 @@
         .nav-cta {
             background: #8BC48A;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
         }
 
         .nav-cta:hover {
             background: #5DD6D8;
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(139, 196, 138, 0.3);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
+            background: none;
+            border: none;
+            min-width: 44px;
+            min-height: 44px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #e8eaed;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 72px;
+            right: 0;
+            width: 280px;
+            height: calc(100vh - 72px);
+            background: rgba(32, 33, 36, 0.98);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid #3c4043;
+            z-index: 999;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            padding: 24px;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .mobile-menu .nav-link {
+            display: block;
+            padding: 16px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #3c4043;
+            text-align: center;
+            min-height: 48px;
+        }
+
+        .mobile-menu .nav-link:hover {
+            background: rgba(139, 196, 138, 0.1);
+            border-color: #8BC48A;
+        }
+
+        .mobile-menu .nav-cta {
+            width: 100%;
+            margin-top: 16px;
+            padding: 16px 24px;
+            min-height: 48px;
         }
 
         .hero {
@@ -236,11 +330,20 @@
             transition: all 0.3s ease;
             border: none;
             box-shadow: 0 4px 16px rgba(59, 169, 156, 0.3);
+            min-height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 24px rgba(59, 169, 156, 0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(-1px);
         }
 
         .btn-secondary {
@@ -255,12 +358,21 @@
             transition: all 0.3s ease;
             border: 2px solid rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(10px);
+            min-height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
         }
 
         .btn-secondary:hover {
             background: rgba(255, 255, 255, 0.15);
             border-color: rgba(255, 255, 255, 0.5);
             transform: translateY(-3px);
+        }
+
+        .btn-secondary:active {
+            transform: translateY(-1px);
         }
 
         .container {
@@ -504,7 +616,7 @@
 
         .mockup-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 50px;
             margin-top: 50px;
         }
@@ -526,6 +638,8 @@
             justify-content: center;
             border: 2px solid #3c4043;
             overflow: hidden;
+            position: relative;
+            width: 100%;
         }
 
         .mockup-screen iframe {
@@ -930,14 +1044,52 @@
             font-size: 14px;
         }
 
-        /* Responsive */
+        /* Responsive - Tablet and Below */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 56px;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+
+            .mockup-screen {
+                height: 500px;
+            }
+
+            .value-grid {
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                gap: 24px;
+            }
+        }
+
+        /* Responsive - Mobile Landscape and Below */
         @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero {
+                padding: 100px 20px 80px;
+            }
+
             .hero h1 {
                 font-size: 36px;
+                line-height: 1.2;
             }
 
             .hero-subtitle {
                 font-size: 18px;
+                margin-bottom: 32px;
             }
 
             .section-title {
@@ -948,8 +1100,13 @@
                 font-size: 16px;
             }
 
+            .section {
+                padding: 50px 20px;
+            }
+
             .challenge-grid {
                 grid-template-columns: 1fr;
+                gap: 30px;
             }
 
             .timeline::before {
@@ -969,25 +1126,220 @@
 
             .hero-cta {
                 flex-direction: column;
+                gap: 12px;
             }
 
             .btn-primary,
             .btn-secondary {
                 width: 100%;
                 text-align: center;
+                padding: 16px 32px;
+            }
+
+            .mockup-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .mockup-screen {
+                height: 400px;
+            }
+
+            .product-features {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .value-metric {
+                font-size: 40px;
+            }
+
+            .roi-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .cta-section {
+                padding: 70px 20px;
+            }
+
+            .cta-section h2 {
+                font-size: 36px;
+            }
+
+            .cta-section p {
+                font-size: 18px;
+            }
+
+            .cta-form {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .cta-input {
+                width: 100%;
+                min-width: auto;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 32px;
             }
         }
 
+        /* Responsive - Mobile Portrait */
         @media (max-width: 480px) {
+            .nav-bar {
+                padding: 12px 16px;
+            }
+
+            .logo-icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            .logo-text {
+                font-size: 20px;
+            }
+
+            .hero {
+                padding: 80px 16px 60px;
+                margin-top: 64px;
+            }
+
             .hero h1 {
                 font-size: 28px;
             }
 
+            .hero-subtitle {
+                font-size: 16px;
+            }
+
+            .hero-badge {
+                font-size: 11px;
+                padding: 8px 16px;
+            }
+
             .section {
-                padding: 60px 20px;
+                padding: 40px 16px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .section-description {
+                font-size: 15px;
+            }
+
+            .value-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .value-card {
+                padding: 24px;
+            }
+
+            .value-metric {
+                font-size: 36px;
+            }
+
+            .challenge-item {
+                padding: 16px;
+            }
+
+            .challenge-item h4 {
+                font-size: 16px;
+            }
+
+            .challenge-item p {
+                font-size: 14px;
+            }
+
+            .feature-card {
+                padding: 24px;
+            }
+
+            .mockup-screen {
+                height: 350px;
+            }
+
+            .mockup-card {
+                padding: 20px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                padding-left: 70px;
+            }
+
+            .timeline-number {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+
+            .timeline-content {
+                padding: 20px;
+            }
+
+            .pricing-card {
+                padding: 30px 20px;
+            }
+
+            .trust-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .trust-card {
+                padding: 24px;
+            }
+
+            .cta-section {
+                padding: 50px 16px;
             }
 
             .cta-section h2 {
+                font-size: 28px;
+            }
+
+            .cta-section p {
+                font-size: 16px;
+            }
+
+            .footer {
+                padding: 40px 16px 20px;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                font-size: 16px;
+                padding: 14px 28px;
+            }
+        }
+
+        /* Extra Small Mobile */
+        @media (max-width: 360px) {
+            .hero h1 {
+                font-size: 24px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .mockup-screen {
+                height: 300px;
+            }
+
+            .value-metric {
                 font-size: 32px;
             }
         }
@@ -1025,8 +1377,21 @@
                 <a href="#implementation" class="nav-link">Implementation</a>
                 <a href="#demo" class="nav-cta">Request Demo</a>
             </div>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#product" class="nav-link">Features</a>
+        <a href="#implementation" class="nav-link">Implementation</a>
+        <a href="#pricing" class="nav-link">Pricing</a>
+        <a href="#demo" class="nav-cta">Request Demo</a>
+    </div>
 
     <!-- Hero Section -->
     <div class="hero">
@@ -1366,6 +1731,34 @@
             }
         });
 
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-menu .nav-link, .mobile-menu .nav-cta').forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        mobileMenu.addEventListener('click', function(e) {
+            if (e.target === mobileMenu) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
         // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1380,6 +1773,16 @@
                     });
                 }
             });
+        });
+
+        // Prevent body scroll when mobile menu is open
+        let lastScrollY = 0;
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768 && mobileMenu.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            }
         });
     </script>
 </body>
