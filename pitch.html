@@ -2052,10 +2052,13 @@
                 <p style="font-size: 22px; opacity: 0.95; margin-bottom: 40px;" data-en="Try Neighbr free for 90 days. Setup in 2 weeks. Then just $168/month per building. Simple as that." data-zh="免費試用Neighbr 90日。兩星期內上線。其後每棟每月只需$168。就是這麼簡單。">
                     Try Neighbr free for 90 days. Setup in 2 weeks. Then just $168/month per building. Simple as that.
                 </p>
-                <div class="cta-form">
-                    <input type="email" class="cta-input" placeholder="Your work email" style="font-size: 18px;" data-en="Your work email" data-zh="你的工作電郵">
-                    <a href="mailto:partners@neighbr.hk?subject=Free 90-Day Trial Request&body=I'm interested in trying Neighbr for my building(s).%0D%0A%0D%0ABuilding name:%0D%0ANumber of units:%0D%0AYour role:%0D%0APhone number:%0D%0A%0D%0ABest time to call:" class="btn-primary" style="font-size: 18px; white-space: nowrap;" data-en="Start Free Trial →" data-zh="開始免費試用 →">Start Free Trial →</a>
-                </div>
+                <form class="cta-form" action="https://formsubmit.co/admin@neighbrhk.com" method="POST" id="trialForm">
+                    <input type="email" name="email" class="cta-input" id="emailInput" placeholder="Your work email" style="font-size: 18px;" data-en="Your work email" data-zh="你的工作電郵" required>
+                    <input type="hidden" name="_subject" value="New Free 90-Day Trial Request - Neighbr">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
+                    <button type="submit" class="btn-primary" style="font-size: 18px; white-space: nowrap; border: none; cursor: pointer;" data-en="Start Free Trial →" data-zh="開始免費試用 →">Start Free Trial →</button>
+                </form>
                 <p style="margin-top: 30px; font-size: 15px; opacity: 0.8;" data-en="✓ Live in 2 weeks  •  ✓ 90 days free  •  ✓ Then just $168/month  •  ✓ Bank-level security" data-zh="✓ 兩星期內上線  •  ✓ 免費試用90日  •  ✓ 其後每月只需$168  •  ✓ 銀行級保安">
                     ✓ Live in 2 weeks  •  ✓ 90 days free  •  ✓ Then just $168/month  •  ✓ Bank-level security
                 </p>
@@ -2255,6 +2258,83 @@
                 // Even for English, update content to show JSON-loaded content
                 updateContent('en');
             }
+        });
+
+        // Email validation and form submission
+        const trialForm = document.getElementById('trialForm');
+        const emailInput = document.getElementById('emailInput');
+
+        // Email validation regex
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        // Add real-time validation feedback
+        emailInput.addEventListener('blur', function() {
+            validateEmail();
+        });
+
+        emailInput.addEventListener('input', function() {
+            // Clear error styling when user starts typing
+            emailInput.style.border = '';
+        });
+
+        function validateEmail() {
+            const email = emailInput.value.trim();
+
+            if (!email) {
+                showError(currentLanguage === 'zh' ? '請輸入電郵地址' : 'Please enter your email address');
+                return false;
+            }
+
+            if (!emailRegex.test(email)) {
+                showError(currentLanguage === 'zh' ? '請輸入有效的電郵地址' : 'Please enter a valid email address');
+                return false;
+            }
+
+            clearError();
+            return true;
+        }
+
+        function showError(message) {
+            emailInput.style.border = '2px solid #ff4444';
+
+            // Remove existing error message
+            const existingError = document.getElementById('emailError');
+            if (existingError) {
+                existingError.remove();
+            }
+
+            // Create and show error message
+            const errorMsg = document.createElement('div');
+            errorMsg.id = 'emailError';
+            errorMsg.style.cssText = 'color: #ff4444; font-size: 14px; margin-top: 8px; text-align: left;';
+            errorMsg.textContent = message;
+            trialForm.appendChild(errorMsg);
+        }
+
+        function clearError() {
+            emailInput.style.border = '';
+            const existingError = document.getElementById('emailError');
+            if (existingError) {
+                existingError.remove();
+            }
+        }
+
+        // Form submission validation
+        trialForm.addEventListener('submit', function(e) {
+            if (!validateEmail()) {
+                e.preventDefault();
+                return false;
+            }
+
+            // Show loading state
+            const submitBtn = trialForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = currentLanguage === 'zh' ? '提交中...' : 'Submitting...';
+            submitBtn.style.opacity = '0.7';
+
+            // Form will submit naturally to FormSubmit.co
+            // Note: First time using admin@neighbrhk.com will require email confirmation
         });
     </script>
 </body>
