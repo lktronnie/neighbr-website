@@ -109,6 +109,19 @@ Run with: `python <script_name>.py`
 3. **Communications**: Manager posts announcement → all tenants in building receive notification → view in feed
 4. **Community**: Tenants post in building forum → other residents can comment/like → fosters neighborhood connections
 
+**Tenant Onboarding Flow** (Progressive Web App):
+1. **QR Code Scan**: Tenant scans QR code posted in building lobby or mailbox area → deep links to sign up/sign in page
+2. **Registration**: Quick sign up with phone number or email (< 30 seconds)
+3. **Unit Linking**: Tenant enters their unit number to link account to their residence
+4. **Mailbox Verification**: Physical verification letter sent to tenant's mailbox with unique code
+5. **Full Access Granted**: Once verified, tenant unlocks all features (facilities, maintenance, announcements, community)
+
+**Key Technical Details:**
+- Progressive Web App (no app store installation required)
+- Works instantly in any mobile browser
+- Physical letter verification ensures only real residents gain access
+- Secure authentication via phone/email + unit number + physical address verification
+
 ### Key Components
 
 **Database Layer** (`lib/db.ts`)
