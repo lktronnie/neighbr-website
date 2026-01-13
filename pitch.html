@@ -509,13 +509,18 @@
         .challenge-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            column-gap: 40px;
+            row-gap: 16px;
             margin-top: 40px;
+        }
+
+        .challenge-column {
+            display: contents;
         }
 
         .challenge-column h3 {
             font-size: 28px;
-            margin-bottom: 24px;
+            margin-bottom: 16px;
             color: #1a202c;
             font-weight: 800;
         }
@@ -530,7 +535,6 @@
 
         .challenge-item {
             padding: 24px;
-            margin-bottom: 16px;
             border-radius: 12px;
             background: white;
             border-left: 4px solid #e2e8f0;
