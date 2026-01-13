@@ -2100,14 +2100,61 @@
             formError.style.display = 'none';
         }
 
-        // Form submission - just validate, then let it submit normally
-        trialForm.addEventListener('submit', function(e) {
+        // Form submission with AJAX to stay on page
+        trialForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
             // Validate all fields before submission
             if (!validateAllFields()) {
-                e.preventDefault();
                 return false;
             }
-            // If validation passes, form submits normally to Formspree
+
+            // Show loading state
+            const submitBtn = trialForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = currentLanguage === 'zh' ? '提交中...' : 'Submitting...';
+            submitBtn.style.opacity = '0.7';
+            hideError();
+
+            try {
+                const formData = new FormData(trialForm);
+                const response = await fetch(trialForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    // Show success message
+                    const successMsg = currentLanguage === 'zh'
+                        ? '✅ 提交成功！我們會盡快聯絡您。'
+                        : '✅ Thank you! We\'ll get back to you soon.';
+                    showSuccess(successMsg);
+
+                    // Reset form
+                    trialForm.reset();
+
+                    // Scroll to success message
+                    formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    const data = await response.json();
+                    throw new Error(data.error || 'Form submission failed');
+                }
+            } catch (error) {
+                console.error('Form submission error:', error);
+                const errorMsg = currentLanguage === 'zh'
+                    ? '提交失敗，請稍後再試或直接電郵至 admin@neighbrhk.com'
+                    : 'Submission failed. Please try again or email us at admin@neighbrhk.com';
+                showError(errorMsg);
+            } finally {
+                // Reset button state
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+                submitBtn.style.opacity = '1';
+            }
         });
     </script>
 </body>
